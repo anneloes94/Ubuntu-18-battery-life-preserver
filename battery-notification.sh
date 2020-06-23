@@ -33,13 +33,20 @@ if [ $# -eq 1 ] && [ "$1" == "--install" ]; then
 
 else
 	# check if power adapter is plugged in, if not, check battery status.
+	batlvl=`acpi -b | grep -P -o '[0-9]+(?=%)'`
+
 	if [ -z "`acpi -a | grep on-line`" ]; then
-		batlvl=`acpi -b | grep -P -o '[0-9]+(?=%)'`
 
     if [ $batlvl -le 40 ] && [ $batlvl -ge 21 ]; then
 			notify-send "Battery is at $batlvl%. Plug your computer in to preserve battery life."
 		elif [ $batlvl -le 20 ]; then
 			notify-send "Battery critically low! Plug your computer in now to preserve battery life "
+		fi
+	
+	elif [ -z "`acpi -a | grep off-line`" ]; then
+		
+    if [ $batlvl -le 100 ] && [ $batlvl -ge 81 ]; then
+			notify-send "Battery is at $batlvl%. Unplug your computer to preserve battery life."
 		fi
 	fi	
 fi
