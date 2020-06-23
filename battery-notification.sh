@@ -5,8 +5,7 @@
 ## Author: Nicholas Neal (nwneal@kisoki.com)
 ## Description: 
 ## 			This is a small script that will install itself to cron
-##			and run every minute, and check if your battery level is
-##			low, and send an alert to your desktop if 15% or less.
+##			and run every minute, check your battery level, and send an alert to your desktop if over 80% or below 40%.
 ##
 ## Dependencies: acpi, send-notify
 ## 
@@ -32,17 +31,19 @@ if [ $# -eq 1 ] && [ "$1" == "--install" ]; then
 	(crontab -l 2>/dev/null; echo "*/2 * * * * $HOME/bin/bn.sh") | crontab -
 
 else
-	# check if power adapter is plugged in, if not, check battery status.
+	# check battery status.
 	batlvl=`acpi -b | grep -P -o '[0-9]+(?=%)'`
 
+	# if adapter is not plugged in, give warnings below 40% battery
 	if [ -z "`acpi -a | grep on-line`" ]; then
-
+		
     if [ $batlvl -le 40 ] && [ $batlvl -ge 21 ]; then
 			notify-send "Battery is at $batlvl%. Plug your computer in to preserve battery life."
 		elif [ $batlvl -le 20 ]; then
 			notify-send "Battery critically low! Plug your computer in now to preserve battery life "
 		fi
 	
+  # else if adapter is plugged in, give warning above 80% battery 
 	elif [ -z "`acpi -a | grep off-line`" ]; then
 		
     if [ $batlvl -le 100 ] && [ $batlvl -ge 81 ]; then
