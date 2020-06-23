@@ -36,14 +36,10 @@ else
 	if [ -z "`acpi -a | grep on-line`" ]; then
 		batlvl=`acpi -b | grep -P -o '[0-9]+(?=%)'`
 
-		if [ $batlvl -le 15 ] && [ $batlvl -ge 11 ]; then
-			notify-send "Battery is at $batlvl%. Please plug your computer in."
-		elif [ $batlvl -le 10 ] && [ $batlvl -ge 6 ]; then
-			notify-send "Battery is at $batlvl%. Computer will shutdown at 5%."
-		elif [ $batlvl -le 5 ]; then
-			notify-send "BATTERY CRITICALLY LOW, SHUTTING DOWN IN 3 SECONDS!"
-			sleep 3
-			shutdown -h now
+    if [ $batlvl -le 40 ] && [ $batlvl -ge 21 ]; then
+			notify-send "Battery is at $batlvl%. Plug your computer in to preserve battery life."
+		elif [ $batlvl -le 20 ]; then
+			notify-send "Battery critically low! Plug your computer in now to preserve battery life "
 		fi
 	fi	
 fi
