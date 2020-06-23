@@ -1,5 +1,7 @@
+__Important note__: For nwneal's original repo, go [here](https://github.com/nwneal/Ubuntu-16-battery-notification).
+
 # Ubuntu Desktop 16.04 LTS Battery Notification
-A script that will notify you that your battery is getting low on Ubuntu Desktop 16.04.2 LTS
+A script that will notify you to plug in or unplug your adapter for battery preservation on Ubuntu 18.
 
 ## Setup
 
@@ -19,11 +21,11 @@ Then, it will install a cron job to call it every 2 minutes.
 
 ## Output
 
-* When your battery is between 11-15%, it will tell you to plug in your computer.
+* When your battery is above 80%, it will tell you to unplug your computer.
 
-* When your battery is between 6-10%, it will alert you that it will shutdown at 5%.
+* When your battery is between 40-20%, it will alert you to plug in your adapter.
 
-* At 5% it will alert you that your computer is shutting down, and shut down your computer safely.
+* Below 20% it will urge you to plug in your adapter.
 
 ## Uninstall
 
