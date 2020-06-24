@@ -1,6 +1,6 @@
-__Important note__: For nwneal's original repo, go [here](https://github.com/nwneal/Ubuntu-16-battery-notification).
+__Important note__: This repo has been cloned from a different repo and adjusted based on my preferences. For nwneal's original (low battery notifications) repo, go [here](https://github.com/nwneal/Ubuntu-16-battery-notification).
 
-# Ubuntu Desktop 16.04 LTS Battery Notification
+# Ubuntu 18 Battery Life Notification
 A script that will notify you to plug in or unplug your adapter for battery preservation on Ubuntu 18.
 
 ## Setup
